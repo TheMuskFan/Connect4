@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect 4 - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="homepage">
+        <h1>Welcome to Connect 4</h1>
+        <p>Select a game mode to start playing:</p>
+        <div class="buttons">
+            <a href="{{ url_for('game', mode='single') }}" class="btn">Single Player vs AI</a>
+            <a href="{{ url_for('game', mode='multiplayer') }}" class="btn">Multiplayer (2 Players)</a>
+        </div>
+        <div class="card">
+            <h2>About the Game</h2>
+            <p>Connect 4 is a two-player connection game in which the players take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Connect 4. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
