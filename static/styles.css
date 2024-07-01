@@ -20,7 +20,7 @@ body {
   grid-template-rows: repeat(6, 60px);
   gap: 5px;
   padding: 10px;
-  background-color: darkblue;
+  background-color: darkblue; /* Ensure this is set correctly */
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -28,7 +28,7 @@ body {
 .cell {
   width: 60px;
   height: 60px;
-  background-color: #ffffff;
+  background-color: #ffffff; /* White background for empty cells */
   border: 2px solid #000000;
   border-radius: 50%;
   display: flex;
@@ -74,4 +74,3 @@ body {
       transform: translateY(0);
   }
 }
-

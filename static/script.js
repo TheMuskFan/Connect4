@@ -1,15 +1,10 @@
-console.log("JavaScript file loaded successfully");
-
 const ROWS = 6;
 const COLUMNS = 7;
 let currentPlayer = 'red';
 let board = [];
-let gameMode = '';
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM fully loaded and parsed");
-    gameMode = window.gameMode;  // Set game mode from the template
-    console.log("Game mode:", gameMode);
+    console.log("JavaScript file loaded successfully");
     createBoard();
     updateTurnIndicator();
     document.getElementById('reset').addEventListener('click', createBoard);
@@ -43,12 +38,6 @@ async function createBoard() {
 }
 
 async function handleCellClick(row, col) {
-    // Prevent interaction if it's AI's turn
-    if (gameMode === 'single' && currentPlayer === 'yellow') {
-        console.log("It's AI's turn. Waiting for AI to make a move.");
-        return;
-    }
-
     console.log(`Handling cell click: row=${row}, col=${col}, currentPlayer=${currentPlayer}`);
     const response = await fetch('/make_move', {
         method: 'POST',
@@ -83,12 +72,6 @@ async function handleCellClick(row, col) {
 
     currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
     updateTurnIndicator();
-
-    // If single player mode and it's now AI's turn, make AI move
-    if (gameMode === 'single' && currentPlayer === 'yellow') {
-        console.log("AI's turn to move.");
-        setTimeout(makeAIMove, 500);
-    }
 }
 
 function updateBoardDisplay() {
@@ -111,22 +94,4 @@ function updateTurnIndicator() {
     currentPlayerElement.textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
     currentPlayerElement.style.color = currentPlayer;
     console.log("Turn indicator updated:", currentPlayer);
-}
-
-function makeAIMove() {
-    // Simple AI: choose a random column
-    const availableCols = [];
-    for (let col = 0; col < COLUMNS; col++) {
-        if (board[0][col] === null) {
-            availableCols.push(col);
-        }
-    }
-    if (availableCols.length === 0) {
-        console.log("No available columns for AI to move.");
-        return;
-    }
-
-    const randomCol = availableCols[Math.floor(Math.random() * availableCols.length)];
-    console.log(`AI chooses column ${randomCol}`);
-    handleCellClick(0, randomCol);  // The row value here is ignored in handleCellClick
 }
